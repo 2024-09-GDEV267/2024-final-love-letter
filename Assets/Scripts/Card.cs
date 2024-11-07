@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    int value;
-    string name;
+    int value = 1;
+    string name = "Guard";
 
     public void Start()
     {
-        value = 1;
-        name = "Guard";
+        name = decideName(value);
     }
 
     public Card(int cardValue)
     {
         value = cardValue;
-        name = decideName(value);
+        
     }
 
     public string decideName(int cardValue)

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,6 +46,11 @@ public class Deck : MonoBehaviour
             }
             //print(cards[i]);
         } 
+    }
+
+    public Card makeCard(int value)
+    {
+        Card newCard = Instantiate()
     }
 
     public Card deal()

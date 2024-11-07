@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    int score;
+    int score = 0;
     Card[] hand;
-    int handSize;
-
-    public Player()
-    {
-        score = 0;
-        handSize = 0;
-    }
+    int handSize = 0;
 
     public Deck Draw(Deck drawingFrom)
     {

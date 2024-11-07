@@ -11,7 +11,7 @@ public class LoveLetter : MonoBehaviour
     void Start()
     { 
         for(int i = 0; i < numPlayers; i++) {
-            players[i] = new Player();
+            players[i] = instantiate(Player);
             players[i].Draw(loveLetterDeck);
         }
         loveLetterDeck.printDeck();
