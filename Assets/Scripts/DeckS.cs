@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class DeckS : MonoBehaviour
 {
     public List<Card> cards;
-    public List<string> cardNames;
+    public List<int> cardValues;
 
-    public GameObject prefabCard;
+    public GameObject Card;
     public Transform deckAnchor;
 
 
@@ -20,15 +21,10 @@ public class DeckS : MonoBehaviour
             deckAnchor = anchorGO.transform;
         }
         MakeDeck();
+        Suffle(ref cards);
     }
 
     private void MakeDeck()
-    {
-
-
-    }
-
-    public void MakeCards()
     {
         // 1 princess v8
         // 1 countess v7
@@ -38,47 +34,66 @@ public class DeckS : MonoBehaviour
         // 2 Barron v3
         // 2 Priest v2
         // 5 Guard v1
-        cardNames = new List<string>();
-        string[] letters = new string[] { "P", "C", "K","Prin","H","B","Priest","G"}; //add more for each card
-        foreach (string s in letters)
+
+        int[] cardValues = new int[] { 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8 }; //add more for each card
+        foreach (int v in cardValues)
         {
-            if (s =="Prin" || s == "H" || s == "B" || s == "Priest")
+            if (v == 1)
             {
-                cardNames.Add(s+1);
-                cardNames.Add(s + 2);
+                //instanices a new card thing = new game object
+                GameObject cgo = new GameObject(Card) as GameObject;
+                //MakeCards(v, "guard");
+                cgo.transform.parent = deckAnchor;
+                cgo.setValue(v);
+                cgo.setName("guard");
+                
             }
-            if (s == "G")
+            if (v == 2)
             {
-                // should be a loop but im lazy
-                cardNames.Add(s + 1);
-                cardNames.Add(s + 2);
-                cardNames.Add(s + 3);
-                cardNames.Add(s + 4);
-                cardNames.Add(s + 5);
+
             }
-            else
+            if (v == 3)
             {
-                cardNames.Add(s);
+
             }
+            if (v == 4)
+            {
+
+            }
+            cards.Add(cgo);
+
         }
-        int TNum;
-        Sprite tS = null;
-        GameObject tGO = null;
-        SpriteRenderer tSR = null;
-
-        cards = new List<Card>();
-        for (int i = 0; i < cardNames.Count; i++)
-        {
-            //cgo is a local variable
-
-            GameObject cgo = new GameObject(prefabCard) as GameObject;
-            cgo.transform.parent = deckAnchor;
-            Card card = cgo.GetComponent<Card>();
-        }
-
 
 
     }
+
+    public void Draw()
+    {
+        //take the top card from cards list
+        //return that card?
+    }
+
+    //public void MakeCards()
+    //{
+
+       //cardValues = new List<int>();
+
+       // int TNum;
+       //Sprite tS = null;
+       // GameObject tGO = null;
+       // SpriteRenderer tSR = null;
+
+       //cards = new List<Card>();
+       //for (int i = 0; i < cards.Count; i++)
+       //{
+           //cgo is a local variable
+
+           // GameObject cgo = new GameObject(prefabCard) as GameObject;
+           // cgo.transform.parent = deckAnchor;
+           // Card card = cgo.GetComponent<Card>();
+       // }
+
+    //}
     private void Suffle(ref List<Card> oCards)
     {
         List<Card> tCards = new List<Card>();
@@ -89,7 +104,6 @@ public class DeckS : MonoBehaviour
             tCards.Add(oCards[ndx]);   
             oCards.RemoveAt(ndx);
         }
-
         oCards = tCards;
     }
     // Update is called once per frame
