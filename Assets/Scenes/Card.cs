@@ -4,15 +4,42 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    private int value;
-    void Start()
+    int value;
+    string name;
+
+    public Card(int cardValue)
     {
-        
+        value = cardValue;
+        name = decideName(value);
     }
 
-    // Update is called once per frame
-    void Update()
+    public string decideName(int cardValue)
     {
-        
+        switch (cardValue)
+        {
+            case 1:
+                return "Guard";
+            case 2:
+                return "Priest";
+            case 3:
+                return "Baron";
+            case 4:
+                return "Handmaiden";
+            case 5:
+                return "Prince";
+            case 6:
+                return "King";
+            case 7:
+                return "Countess";
+            case 8:
+                return "Princess";
+            default:
+                return null;
+        }
+    }
+
+    public int getValue()
+    {
+        return value;
     }
 }
