@@ -7,6 +7,12 @@ public class Card : MonoBehaviour
     int value;
     string name;
 
+    public void Start()
+    {
+        value = 1;
+        name = "Guard";
+    }
+
     public Card(int cardValue)
     {
         value = cardValue;
@@ -41,5 +47,10 @@ public class Card : MonoBehaviour
     public int getValue()
     {
         return value;
+    }
+
+    public void setValue(int newValue)
+    {
+        value = newValue;
     }
 }
