@@ -8,12 +8,11 @@ public class Player : MonoBehaviour
     Card[] hand;
     int handSize;
 
-    public Player()
+    public void Start()
     {
         score = 0;
         handSize = 0;
     }
-
     public Deck Draw(Deck drawingFrom)
     {
         hand[handSize] = (drawingFrom.deal());
