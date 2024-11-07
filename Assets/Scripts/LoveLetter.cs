@@ -9,7 +9,7 @@ public class LoveLetter : MonoBehaviour
     Player[] players;
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         for(int i = 0; i < numPlayers; i++) {
             players[i] = new Player();
             players[i].Draw(loveLetterDeck);
