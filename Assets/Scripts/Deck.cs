@@ -48,10 +48,6 @@ public class Deck : MonoBehaviour
         } 
     }
 
-    public Card makeCard(int value)
-    {
-        Card newCard = Instantiate()
-    }
 
     public Card deal()
     {
