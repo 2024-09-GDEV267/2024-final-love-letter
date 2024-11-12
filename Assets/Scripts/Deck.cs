@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deck : MonoBehaviour
+public class Deck // MonoBehaviour
 {
-     Card[] cards;
-     int deckLength = 16;
+     public Card[] cards = new Card[16];
+     public int deckLength = 16;
     
     public Deck()
     {
@@ -61,15 +61,20 @@ public class Deck : MonoBehaviour
             }
         }
         deckLength--;
-        print(cardDelt.getValue());
+        Debug.Log(cardDelt.getValue());
         return cardDelt;
+    }
+
+    public int getDeckLength()
+    {
+        return deckLength;
     }
 
     public void printDeck()
     {
         for (int i = 0; i < deckLength; i++)
         {
-            print(cards[i].getValue());
+            Debug.Log(cards[i].getValue());
         }
     }
 }

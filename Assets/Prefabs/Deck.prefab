@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1573998617712069250}
   - component: {fileID: 8298581673348005517}
   - component: {fileID: 4701705554340952565}
-  - component: {fileID: -706905484682261548}
   m_Layer: 0
   m_Name: Deck
   m_TagString: Untagged
@@ -106,15 +105,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-706905484682261548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7708566527860049688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37d565b73cf046c4e944fb56717f2aba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

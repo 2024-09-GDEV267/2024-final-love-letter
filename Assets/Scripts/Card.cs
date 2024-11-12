@@ -2,20 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class Card //MonoBehaviour
 {
-    int value = 1;
-    string name = "Guard";
-
-    public void Start()
-    {
-        name = decideName(value);
-    }
+    public int value = 1;
+    public string name = "Guard";
 
     public Card(int cardValue)
     {
         value = cardValue;
-        
+        name = decideName(value);
     }
 
     public string decideName(int cardValue)

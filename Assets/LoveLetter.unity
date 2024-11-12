@@ -278,7 +278,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -346,6 +346,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f2b852a1d6d3540bdc1548add58dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loveLetterDeck: {fileID: 0}
+  numPlayers: 4
+  player: {fileID: 0}
+  players: []
 --- !u!114 &1646671256
 MonoBehaviour:
   m_ObjectHideFlags: 0
