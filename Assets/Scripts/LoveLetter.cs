@@ -5,24 +5,19 @@ using UnityEngine;
 public class LoveLetter : MonoBehaviour
 {
     public Deck loveLetterDeck = new Deck();
-    //public Deck loveLetterDeck = new Deck();
     public int numPlayers = 4;
-   // public GameObject player;
     public Player[] players = new Player[4];
     public Player activePlayer;
     public int activePlayerIndex;
     public Vector3 mousePos;
-    // Start is called before the first frame update
     void Start()
     {
-        //GameObject deck = Instantiate<GameObject>(loveLetterDeck);
+        //Deals a card to each player
         for(int i = 0; i < numPlayers; i++) {
-            players[i] = new Player();
+            players[i] = new Player(i + 1);
             players[i].draw(loveLetterDeck);
         }
-        //Debug.Log("This is the Deck:");
-        //loveLetterDeck.printDeck();
-
+        //Determines an active player and draws them a card
         activePlayer = players[0];
         activePlayerIndex = 0;
         activePlayer.draw(loveLetterDeck);
@@ -31,7 +26,9 @@ public class LoveLetter : MonoBehaviour
 
     void OnMouseDown()
     {
-        if(mousePos.x < 0)
+        //Chooses a card to discard (This didn't work - might need help)
+        Debug.Log("X Position: " + mousePos.x);
+        if (mousePos.x < 0)
         {
             activePlayer.discardLeft();
         }
@@ -40,6 +37,7 @@ public class LoveLetter : MonoBehaviour
             activePlayer.discardRight();
         }
 
+        //Changes the active player
         if(activePlayerIndex == 3)
         {
             activePlayerIndex = 0;
@@ -50,6 +48,7 @@ public class LoveLetter : MonoBehaviour
         }
         activePlayer = players[activePlayerIndex];
 
+        //Ends the round if the deck is empty
         if (loveLetterDeck.getDeckLength() == 0)
         {
             endRound();
@@ -62,6 +61,7 @@ public class LoveLetter : MonoBehaviour
         
     }
 
+    //Ends the round and increses the score of the winning player
     void endRound()
     {
         int currentMax = 0;

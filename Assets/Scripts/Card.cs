@@ -38,6 +38,7 @@ public class Card //MonoBehaviour
         }
     }
 
+    //Gets the value of the card
     public int getValue()
     {
         return value;

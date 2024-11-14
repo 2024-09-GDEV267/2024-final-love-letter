@@ -49,6 +49,7 @@ public class Deck // MonoBehaviour
     }
 
 
+    //Gets a card from the deck to give to the player
     public Card deal()
     {
         int cardNum = (int)(Random.value * deckLength);
@@ -61,15 +62,17 @@ public class Deck // MonoBehaviour
             }
         }
         deckLength--;
-        Debug.Log(cardDelt.getValue());
+        //Debug.Log("The card that was dealt to Player X was " + cardDelt.getValue());
         return cardDelt;
     }
 
+    //Gets the length of the deck
     public int getDeckLength()
     {
         return deckLength;
     }
 
+    //Prints the deck (For testing purposes
     public void printDeck()
     {
         for (int i = 0; i < deckLength; i++)
