@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LoveLetter : MonoBehaviour
 {
-    public Deck loveLetterDeck = new Deck();
+    [SerializeField]
+    public Deck loveLetterDeck;// = new Deck(); Need to instantiate the deck script in Start or Awake, not the constructor
     public int numPlayers = 4;
     public Player[] players = new Player[4];
     public Player activePlayer;
@@ -12,6 +13,10 @@ public class LoveLetter : MonoBehaviour
     public Vector3 mousePos;
     void Start()
     {
+        //Find the deck object as a peer component on this object, call method to instantiate it
+        loveLetterDeck = GetComponent<Deck>();
+        loveLetterDeck.InstantiateDeck();
+
         //Deals a card to each player
         for(int i = 0; i < numPlayers; i++) {
             players[i] = new Player(i + 1);
@@ -75,5 +80,6 @@ public class LoveLetter : MonoBehaviour
             }
         }
         players[leadingIndex].increaseScore();
+        Debug.Log("Player " + players[leadingIndex].getPlayerNum());
     }
 }

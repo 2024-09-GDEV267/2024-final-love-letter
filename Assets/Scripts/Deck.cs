@@ -3,22 +3,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deck // MonoBehaviour
+public class Deck : MonoBehaviour
 {
-     public Card[] cards = new Card[16];
-     public int deckLength = 16;
+    [Header("Inscribed")]
+    [SerializeField]
+    public Card[] cards = new Card[16];
+    public GameObject cardPrefab;
+    public int deckLength = 16;
     
-    public Deck()
+    /// <summary>
+    ///  this is the equivalent of the constructor for the Deck, but must be called explicitly
+    /// </summary>
+    public void InstantiateDeck()
     {
+        GameObject tgo;
         for(int i = 0; i < deckLength; i++)
         {
             if (i < 5)
             {
-                cards[i] = new Card(1);
+                tgo = GameObject.Instantiate(cardPrefab);
+                tgo.GetComponent<Card>().setValue(1);
+                cards[i] = tgo.GetComponent<Card>();
             }
             else if (i < 7)
             {
-                cards[i] = new Card(2);
+                tgo = GameObject.Instantiate(cardPrefab);
+                tgo.GetComponent<Card>().setValue(2);
+                cards[i] = tgo.GetComponent<Card>();
+                
             }
             else if (i < 9)
             {

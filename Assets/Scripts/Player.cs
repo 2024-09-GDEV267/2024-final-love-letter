@@ -59,4 +59,9 @@ public class Player //MonoBehaviour
             Debug.Log(card.getValue());
         }
     }
+
+    public int getPlayerNum()
+    {
+        return playerNum;
+    }
 }

@@ -2,12 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card //MonoBehaviour
+public class Card : MonoBehaviour
 {
     public int value = 1;
     public string name = "Guard";
 
-    public Card(int cardValue)
+
+    public void Start()
+    {
+        makeCard(1);
+    }
+
+    /// <summary>
+    /// MakeCard acts like the constructor for the card 
+    /// </summary>
+    /// <param name="cardValue"></param>
+    public void makeCard(int cardValue)
     {
         value = cardValue;
         name = decideName(value);
@@ -47,5 +57,10 @@ public class Card //MonoBehaviour
     public void setValue(int newValue)
     {
         value = newValue;
+    }
+
+    public void OnMouseUpAsButton()
+    {
+        print("Card Value is : " +  this.getValue() + " - " + this.name);
     }
 }
