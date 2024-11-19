@@ -34,27 +34,39 @@ public class Deck : MonoBehaviour
             }
             else if (i < 9)
             {
-                cards[i] = new Card(3);
+                tgo = GameObject.Instantiate(cardPrefab);
+                tgo.GetComponent<Card>().setValue(3);
+                cards[i] = tgo.GetComponent<Card>();
             }
             else if (i < 11)
             {
-                cards[i] = new Card(4);
+                tgo = GameObject.Instantiate(cardPrefab);
+                tgo.GetComponent<Card>().setValue(4);
+                cards[i] = tgo.GetComponent<Card>();
             }
             else if (i < 13)
             {
-                cards[i] = new Card(5);
+                tgo = GameObject.Instantiate(cardPrefab);
+                tgo.GetComponent<Card>().setValue(5);
+                cards[i] = tgo.GetComponent<Card>();
             }
             else if (i < 14)
             {
-                cards[i] = new Card(6);
+                tgo = GameObject.Instantiate(cardPrefab);
+                tgo.GetComponent<Card>().setValue(6);
+                cards[i] = tgo.GetComponent<Card>();
             }
             else if (i < 15)
             {
-                cards[i] = new Card(7);
+                tgo = GameObject.Instantiate(cardPrefab);
+                tgo.GetComponent<Card>().setValue(7);
+                cards[i] = tgo.GetComponent<Card>();
             }
             else
             {
-                cards[i] = new Card(8);
+                tgo = GameObject.Instantiate(cardPrefab);
+                tgo.GetComponent<Card>().setValue(8);
+                cards[i] = tgo.GetComponent<Card>();
             }
             //print(cards[i]);
         } 
