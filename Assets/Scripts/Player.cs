@@ -9,6 +9,7 @@ public class Player //MonoBehaviour
     public int handSize = 0;
     public int playerNum;
     public bool alive = true;
+    public bool immune = false;
 
     public Player(int number)
     {
@@ -27,8 +28,19 @@ public class Player //MonoBehaviour
     {
         Debug.Log("The card that was discarded was " + hand[0].getValue());
         Card tempCard = hand[0];
-        hand[0] = hand[1];
-        hand[1] = null;
+        if (hand[1] != null)
+        {
+            hand[0] = hand[1];
+            hand[1] = null;
+        }
+        else
+        {
+            hand[0] = null;
+        }
+        if(tempCard.getValue() == 8)
+        {
+            this.killPlayer();
+        }
         handSize--;
         return tempCard;
 
@@ -67,5 +79,43 @@ public class Player //MonoBehaviour
     public int getPlayerNum()
     {
         return playerNum;
+    }
+
+    public void killPlayer()
+    {
+        this.discardLeft();
+        alive = false;
+    }
+
+    public void toggleProtection()
+    {
+        if (immune)
+        {
+            immune = false;
+        }
+        else
+        {
+            immune = true;
+        }
+    }
+
+    public Card getCard()
+    {
+        return hand[0];
+    }
+
+    public void setCard(Card passedCard)
+    {
+        hand[0] = passedCard;
+    }
+
+    public bool isProtected()
+    {
+        return immune;
+    }
+
+    public bool isAlive()
+    {
+        return alive;
     }
 }

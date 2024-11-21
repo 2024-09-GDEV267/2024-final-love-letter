@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class LoveLetter : MonoBehaviour
@@ -94,12 +95,65 @@ public class LoveLetter : MonoBehaviour
         players[leadingIndex].increaseScore();
         Debug.Log("Player " + players[leadingIndex].getPlayerNum());
     }
-    void effects(int x)
+    void effects(int value)
     {
-        //case1
-            //do thing
-        //case 2
-            //do thing
+        int chosenPlayer;
+        Player targetPlayer;
+        switch (value)
+        {
+            case 1:
+                chosenPlayer = Random.Range(0, numPlayers - 1);
+                int chosenCard = Random.Range(1, 8);
+                targetPlayer = players[chosenPlayer];
+
+                if (targetPlayer.getHandValue() == chosenCard)
+                {
+                    targetPlayer.killPlayer();
+                }
+                break;
+
+            case 2:
+                //Let's come back to this one
+                break;
+
+            case 3:
+                chosenPlayer = Random.Range(0, numPlayers - 1);
+                targetPlayer = players[chosenPlayer];
+
+                if (activePlayer.getHandValue() > targetPlayer.getHandValue())
+                {
+                    targetPlayer.killPlayer();
+                }
+                else if (activePlayer.getHandValue() < targetPlayer.getHandValue())
+                {
+                    activePlayer.killPlayer();
+                }
+                break;
+
+            case 4:
+                activePlayer.toggleProtection();
+                break;
+
+            case 5:
+                chosenPlayer = Random.Range(0, numPlayers - 1);
+                targetPlayer = players[chosenPlayer];
+
+                targetPlayer.discardLeft();
+                if (targetPlayer.isAlive())
+                {
+                    targetPlayer.draw(loveLetterDeck);
+                }
+                break;
+
+            case 6:
+                chosenPlayer = Random.Range(0, numPlayers - 1);
+                targetPlayer = players[chosenPlayer];
+
+                Card swappedCard = targetPlayer.getCard();
+                targetPlayer.setCard(activePlayer.getCard());
+                activePlayer.setCard(swappedCard);
+                break;
+        }
     }
 
 }
