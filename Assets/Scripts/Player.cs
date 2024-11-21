@@ -89,6 +89,15 @@ public class Player //MonoBehaviour
             Debug.Log(card.getValue());
         }
     }
+    public void Active()
+    {
+        hand[0].active = true;
+        hand[1].active= true;
+    }
+    public void deActive()
+    {
+        hand[0].active = false;
+    }
 
     public int getPlayerNum()
     {

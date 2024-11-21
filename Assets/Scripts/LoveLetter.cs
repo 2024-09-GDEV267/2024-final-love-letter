@@ -34,6 +34,7 @@ public class LoveLetter : MonoBehaviour
         activePlayerIndex = 0;
         activePlayer.draw(loveLetterDeck);
         activePlayer.printHand();
+        activePlayer.Active();
     }
     public void playCard(Card clickedCard)
     {
@@ -48,6 +49,8 @@ public class LoveLetter : MonoBehaviour
             Card dCard = activePlayer.discardRight();
             effects(dCard.getValue());
         }
+        activePlayer.deActive();
+
         //Changes the active player
         if (activePlayerIndex == 3)
         {
@@ -60,7 +63,6 @@ public class LoveLetter : MonoBehaviour
             //do math to move camera
         }
         activePlayer = players[activePlayerIndex];
-
         //check game end
         if (loveLetterDeck.getDeckLength() == 0)
         {
@@ -70,6 +72,7 @@ public class LoveLetter : MonoBehaviour
         {
             activePlayer.draw(loveLetterDeck);
             activePlayer.printHand();
+            activePlayer.Active();
         }
     }
    // void OnMouseDown()
