@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class LoveLetter : MonoBehaviour
 {
+    public static LoveLetter S;
     [SerializeField]
     public Deck loveLetterDeck;// = new Deck(); Need to instantiate the deck script in Start or Awake, not the constructor
     public int numPlayers = 4;
@@ -32,28 +34,21 @@ public class LoveLetter : MonoBehaviour
         activePlayer.draw(loveLetterDeck);
         activePlayer.printHand();
     }
-
-    void OnMouseDown()
+    public void playCard(Card clickedCard)
     {
-        //Chooses a card to discard (This didn't work - might need help)-
-        Debug.Log("X Position: " + mousePos.x);
-        if (mousePos.x < 0)
+        if (clickedCard == activePlayer.getLeftCard())
         {
             Card dCard = activePlayer.discardLeft();
             effects(dCard.getValue());
-            //move dcard to discardpile
-            //activePlayer.discardLeft(true);
+
         }
-        else
+        else 
         {
             Card dCard = activePlayer.discardRight();
             effects(dCard.getValue());
-            //move dcard to discardpile
-            //activePlayer.discardRight();
         }
-
         //Changes the active player
-        if(activePlayerIndex == 3)
+        if (activePlayerIndex == 3)
         {
             activePlayerIndex = 0;
             //do math to move camera
@@ -65,7 +60,7 @@ public class LoveLetter : MonoBehaviour
         }
         activePlayer = players[activePlayerIndex];
 
-        //Ends the round if the deck is empty
+        //check game end
         if (loveLetterDeck.getDeckLength() == 0)
         {
             endRound();
@@ -75,8 +70,50 @@ public class LoveLetter : MonoBehaviour
             activePlayer.draw(loveLetterDeck);
             activePlayer.printHand();
         }
-        
     }
+   // void OnMouseDown()
+   // {
+   //     //Chooses a card to discard (This didn't work - might need help)-
+   //     if (mousePos.x < 0)
+   //     {
+   //         Card dCard = activePlayer.discardLeft();
+   //         effects(dCard.getValue());
+   //         //move dcard to discardpile
+   //         //activePlayer.discardLeft(true);
+   //     }
+   //     else
+   //     {
+   //         Card dCard = activePlayer.discardRight();
+   //         effects(dCard.getValue());
+   //         //move dcard to discardpile
+   //         //activePlayer.discardRight();
+   //     }
+
+   //     //Changes the active player
+   //     if(activePlayerIndex == 3)
+   //     {
+   //         activePlayerIndex = 0;
+   //         //do math to move camera
+   //     }
+   //     else
+   //     {
+   //         activePlayerIndex++;
+   //         //do math to move camera
+   //     }
+   //     activePlayer = players[activePlayerIndex];
+
+   //     //Ends the round if the deck is empty
+   //     if (loveLetterDeck.getDeckLength() == 0)
+   //     {
+   //         endRound();
+   //     }
+   //     else
+   //     {
+   //         activePlayer.draw(loveLetterDeck);
+   //         activePlayer.printHand();
+   //     }
+        
+   // }
 
     //Ends the round and increses the score of the winning player
     void endRound()

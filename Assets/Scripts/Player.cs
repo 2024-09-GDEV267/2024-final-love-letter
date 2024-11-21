@@ -9,6 +9,8 @@ public class Player //MonoBehaviour
     public int handSize = 0;
     public int playerNum;
     public bool alive = true;
+    public GameObject handAnchor;
+    private Vector3 rightShift = new Vector3(5, 0, 0);
 
     public Player(int number)
     {
@@ -17,7 +19,14 @@ public class Player //MonoBehaviour
     //Drawing from the deck
     public void draw(Deck drawingFrom)
     {
-        hand[handSize] = (drawingFrom.deal());
+        if (handSize == 0)
+        {
+            hand[handSize] = (drawingFrom.deal(handAnchor.transform.position));
+        }
+        else
+        {
+            hand[handSize] = (drawingFrom.deal(handAnchor.transform.position + rightShift));
+        }
         Debug.Log("The card that was dealt to Player " + playerNum + " was " + hand[handSize].getValue());
         handSize++;
     }
@@ -30,6 +39,7 @@ public class Player //MonoBehaviour
         hand[0] = hand[1];
         hand[1] = null;
         handSize--;
+        hand[0].GetComponent<Transform>().position = handAnchor.transform.position;
         return tempCard;
 
     }
@@ -41,6 +51,10 @@ public class Player //MonoBehaviour
         hand[1] = null;
         handSize--;
         return tempCard;
+    }
+    public Card getLeftCard()
+    {
+        return hand[0];
     }
     //Returns the value of the card in the hand
     public int getHandValue()

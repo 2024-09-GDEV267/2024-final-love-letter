@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Card : MonoBehaviour
 {
     public int value = 1;
     public string name = "Guard";
+    public bool active = false;
     
     public void Start()
     {
@@ -63,5 +65,17 @@ public class Card : MonoBehaviour
     public void OnMouseUpAsButton()
     {
         print("Card Value is : " +  this.getValue() + " - " + this.name);
+    }
+    void OnMouseDown()
+    {
+        
+        if (active)
+        {
+            LoveLetter.S.playCard(this);
+        }
+        else
+        {
+            Debug.Log("not active");
+        }
     }
 }

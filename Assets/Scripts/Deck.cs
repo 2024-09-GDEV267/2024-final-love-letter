@@ -74,7 +74,7 @@ public class Deck : MonoBehaviour
 
 
     //Gets a card from the deck to give to the player
-    public Card deal()
+    public Card deal(Vector3 playerPos)
     {
         int cardNum = (int)(Random.value * deckLength);
         Card cardDelt = cards[cardNum];
@@ -85,6 +85,8 @@ public class Deck : MonoBehaviour
                 cards[i] = cards[i + 1];
             }
         }
+        cardDelt.GetComponent<Transform>().position = playerPos;
+        //lerp myposition to playPos
         deckLength--;
         //Debug.Log("The card that was dealt to Player X was " + cardDelt.getValue());
         return cardDelt;
