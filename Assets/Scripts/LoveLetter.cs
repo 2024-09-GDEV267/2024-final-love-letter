@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class LoveLetter : MonoBehaviour
@@ -9,6 +10,8 @@ public class LoveLetter : MonoBehaviour
     public int numPlayers = 4;
     public Player[] players = new Player[4];
     public Player activePlayer;
+    public Card[] discardPile = new Card[16]; // should be a list
+    // create an ancorpoint for discardpile (vector3)
     public int activePlayerIndex;
     public Vector3 mousePos;
     void Start()
@@ -22,6 +25,7 @@ public class LoveLetter : MonoBehaviour
             players[i] = new Player(i + 1);
             players[i].draw(loveLetterDeck);
         }
+
         //Determines an active player and draws them a card
         activePlayer = players[0];
         activePlayerIndex = 0;
@@ -31,25 +35,33 @@ public class LoveLetter : MonoBehaviour
 
     void OnMouseDown()
     {
-        //Chooses a card to discard (This didn't work - might need help)
+        //Chooses a card to discard (This didn't work - might need help)-
         Debug.Log("X Position: " + mousePos.x);
         if (mousePos.x < 0)
         {
-            activePlayer.discardLeft();
+            Card dCard = activePlayer.discardLeft();
+            effects(dCard.getValue());
+            //move dcard to discardpile
+            //activePlayer.discardLeft(true);
         }
         else
         {
-            activePlayer.discardRight();
+            Card dCard = activePlayer.discardRight();
+            effects(dCard.getValue());
+            //move dcard to discardpile
+            //activePlayer.discardRight();
         }
 
         //Changes the active player
         if(activePlayerIndex == 3)
         {
             activePlayerIndex = 0;
+            //do math to move camera
         }
         else
         {
             activePlayerIndex++;
+            //do math to move camera
         }
         activePlayer = players[activePlayerIndex];
 
@@ -82,4 +94,12 @@ public class LoveLetter : MonoBehaviour
         players[leadingIndex].increaseScore();
         Debug.Log("Player " + players[leadingIndex].getPlayerNum());
     }
+    void effects(int x)
+    {
+        //case1
+            //do thing
+        //case 2
+            //do thing
+    }
+
 }

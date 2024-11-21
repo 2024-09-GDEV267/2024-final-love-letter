@@ -6,11 +6,11 @@ public class Card : MonoBehaviour
 {
     public int value = 1;
     public string name = "Guard";
-
-
+    
     public void Start()
     {
         makeCard(1);
+        //this.gameObject.name = name;
     }
 
     /// <summary>
@@ -57,6 +57,7 @@ public class Card : MonoBehaviour
     public void setValue(int newValue)
     {
         value = newValue;
+        name = decideName(value);
     }
 
     public void OnMouseUpAsButton()

@@ -8,6 +8,7 @@ public class Player //MonoBehaviour
     public Card[] hand = new Card[2];
     public int handSize = 0;
     public int playerNum;
+    public bool alive = true;
 
     public Player(int number)
     {
@@ -22,22 +23,25 @@ public class Player //MonoBehaviour
     }
 
     //Discarding the leftmost card in your hand
-    public void discardLeft()
+    public Card discardLeft()
     {
         Debug.Log("The card that was discarded was " + hand[0].getValue());
+        Card tempCard = hand[0];
         hand[0] = hand[1];
         hand[1] = null;
         handSize--;
-    }
+        return tempCard;
 
+    }
     //Discarding the rightmost card in your hand
-    public void discardRight()
+    public Card discardRight()
     {
         Debug.Log("The card that was discarded was " + hand[1].getValue());
+        Card tempCard = hand[1];
         hand[1] = null;
         handSize--;
+        return tempCard;
     }
-
     //Returns the value of the card in the hand
     public int getHandValue()
     {

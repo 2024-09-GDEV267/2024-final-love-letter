@@ -8,7 +8,7 @@ public class Deck : MonoBehaviour
     [Header("Inscribed")]
     [SerializeField]
     public Card[] cards = new Card[16];
-    public GameObject cardPrefab;
+    public GameObject[] cardPrefab = new GameObject[7];
     public int deckLength = 16;
     
     /// <summary>
@@ -21,50 +21,50 @@ public class Deck : MonoBehaviour
         {
             if (i < 5)
             {
-                tgo = GameObject.Instantiate(cardPrefab);
+                tgo = GameObject.Instantiate(cardPrefab[0]);
                 tgo.GetComponent<Card>().setValue(1);
                 cards[i] = tgo.GetComponent<Card>();
             }
             else if (i < 7)
             {
-                tgo = GameObject.Instantiate(cardPrefab);
+                tgo = GameObject.Instantiate(cardPrefab[1]);
                 tgo.GetComponent<Card>().setValue(2);
                 cards[i] = tgo.GetComponent<Card>();
                 
             }
             else if (i < 9)
             {
-                tgo = GameObject.Instantiate(cardPrefab);
+                tgo = GameObject.Instantiate(cardPrefab[2]);
                 tgo.GetComponent<Card>().setValue(3);
                 cards[i] = tgo.GetComponent<Card>();
             }
             else if (i < 11)
             {
-                tgo = GameObject.Instantiate(cardPrefab);
+                tgo = GameObject.Instantiate(cardPrefab[3]);
                 tgo.GetComponent<Card>().setValue(4);
                 cards[i] = tgo.GetComponent<Card>();
             }
             else if (i < 13)
             {
-                tgo = GameObject.Instantiate(cardPrefab);
+                tgo = GameObject.Instantiate(cardPrefab[4]);
                 tgo.GetComponent<Card>().setValue(5);
                 cards[i] = tgo.GetComponent<Card>();
             }
             else if (i < 14)
             {
-                tgo = GameObject.Instantiate(cardPrefab);
+                tgo = GameObject.Instantiate(cardPrefab[5]);
                 tgo.GetComponent<Card>().setValue(6);
                 cards[i] = tgo.GetComponent<Card>();
             }
             else if (i < 15)
             {
-                tgo = GameObject.Instantiate(cardPrefab);
+                tgo = GameObject.Instantiate(cardPrefab[6]);
                 tgo.GetComponent<Card>().setValue(7);
                 cards[i] = tgo.GetComponent<Card>();
             }
             else
             {
-                tgo = GameObject.Instantiate(cardPrefab);
+                tgo = GameObject.Instantiate(cardPrefab[7]);
                 tgo.GetComponent<Card>().setValue(8);
                 cards[i] = tgo.GetComponent<Card>();
             }
@@ -96,7 +96,7 @@ public class Deck : MonoBehaviour
         return deckLength;
     }
 
-    //Prints the deck (For testing purposes
+    //Prints the deck for testing purposes
     public void printDeck()
     {
         for (int i = 0; i < deckLength; i++)

@@ -154,7 +154,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f2b852a1d6d3540bdc1548add58dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loveLetterDeck: {fileID: 0}
   numPlayers: 4
+  discardPile:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   activePlayerIndex: 0
   mousePos: {x: 0, y: 0, z: 0}
 --- !u!65 &797706583
@@ -523,8 +541,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
