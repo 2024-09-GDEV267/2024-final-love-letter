@@ -23,9 +23,18 @@ public class LoveLetter : MonoBehaviour
         loveLetterDeck = GetComponent<Deck>();
         loveLetterDeck.InstantiateDeck();
 
-        //Deals a card to each player
-        for(int i = 0; i < numPlayers; i++) {
+        for (int i = 0; i < numPlayers; i++)
+        {
             players[i] = new Player(i + 1);
+        }
+        startRound();
+    }
+
+    public void startRound()
+    {
+        //Deals a card to each player
+        for (int i = 0; i < numPlayers; i++)
+        {
             players[i].draw(loveLetterDeck);
         }
 
@@ -133,7 +142,24 @@ public class LoveLetter : MonoBehaviour
             }
         }
         players[leadingIndex].increaseScore();
-        Debug.Log("Player " + players[leadingIndex].getPlayerNum());
+        //Debug.Log("Player " + players[leadingIndex].getPlayerNum());
+        if (players[leadingIndex].getScore() > 4)
+        {
+            for (int i = 0; i < numPlayers; i++)
+            {
+                if (!players[i].isAlive())
+                {
+                    players[i].revivePlayer();
+                }
+                players[i].discardLeft();
+            }
+            startRound();
+        }
+        else
+        {
+            Debug.Log("Player " + players[leadingIndex].getPlayerNum() + " has won the game!");
+        }
+        
     }
     void effects(int value)
     {

@@ -74,6 +74,12 @@ public class Player //MonoBehaviour
         return hand[0].getValue();
     }
 
+    //Gets the player's score
+    public int getScore()
+    {
+        return score;
+    }
+
     //Increases this player's score
     public void increaseScore()
     {
@@ -108,6 +114,12 @@ public class Player //MonoBehaviour
     {
         this.discardLeft();
         alive = false;
+        
+    }
+
+    public void revivePlayer()
+    {
+        alive = true;
     }
 
     public void toggleProtection()
