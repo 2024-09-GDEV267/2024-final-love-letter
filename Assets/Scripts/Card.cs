@@ -71,6 +71,7 @@ public class Card : MonoBehaviour
         
         if (active)
         {
+            Debug.Log("Clicked");
             LoveLetter.S.playCard(this);
         }
         else
