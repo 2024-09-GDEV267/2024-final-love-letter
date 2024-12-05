@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public GameObject discardAnchor;
     public int discardCount = 0;
 
-    public void Start ()
+    public void Awake ()
     {
         switch (playerNum)
         {
