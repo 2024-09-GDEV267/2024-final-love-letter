@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public bool alive = true;
     public GameObject handAnchor;
     private Vector3 rightShift = new Vector3(5, 0, 0);
-    public Quaternion playerRotation = new Quaternion(0, 0, 0,0);
+    public Quaternion playerRotation = Quaternion.Euler(0, 0, 0);
     public bool immune = false;
     public GameObject discardAnchor;
     public int discardCount = 0;
@@ -26,15 +26,15 @@ public class Player : MonoBehaviour
                 break;
             case 1:
                 rightShift = new Vector3(0, -5, 0);
-                playerRotation = new Quaternion(0, 0, 45, 0);
+                playerRotation = Quaternion.Euler(0, 0, -90);
                 break;
             case 2:
                 rightShift = new Vector3(5, 0, 0);
-                playerRotation = new Quaternion(0, 0, 90, 0);
+                playerRotation = Quaternion.Euler(0, 0, 180);
                 break;
             case 3:
                 rightShift = new Vector3(0, -5, 0);
-                playerRotation = new Quaternion(0, 0, 90,0);
+                playerRotation = Quaternion.Euler(0, 0, 90);
                 break;
         }
     }
@@ -60,7 +60,21 @@ public class Player : MonoBehaviour
     {
         Debug.Log("The card that was discarded was " + hand[0].getValue());
         Card tempCard = hand[0];
-        hand[0].GetComponent<Transform>().position = discardAnchor.transform.position + new Vector3(2*discardCount,0,0);
+        switch(playerNum)
+        {
+            case 0:
+                hand[0].GetComponent<Transform>().position = discardAnchor.transform.position + new Vector3(2 * discardCount, 0, 0);
+                break;
+            case 1:
+                hand[0].GetComponent<Transform>().position = discardAnchor.transform.position + new Vector3(0,-2* discardCount, 0);
+                break;
+            case 2:
+                hand[0].GetComponent<Transform>().position = discardAnchor.transform.position + new Vector3(-2 * discardCount, 0, 0);
+                break;
+            case 3:
+                hand[0].GetComponent<Transform>().position = discardAnchor.transform.position + new Vector3(0, -2* discardCount, 0);
+                break;
+        }
         if (hand[1] != null)
         {
             hand[1].GetComponent<Transform>().position = handAnchor.transform.position;
@@ -84,8 +98,22 @@ public class Player : MonoBehaviour
     {
         Debug.Log("The card that was discarded was " + hand[1].getValue());
         Card tempCard = hand[1];
-        hand[1].GetComponent<Transform>().position = discardAnchor.transform.position + new Vector3(2 * discardCount, 0, 0); ;
-        if(tempCard.getValue() == 8)
+        switch (playerNum)
+        {
+            case 0:
+                hand[1].GetComponent<Transform>().position = discardAnchor.transform.position + new Vector3(2 * discardCount, 0, 0);
+                break;
+            case 1:
+                hand[1].GetComponent<Transform>().position = discardAnchor.transform.position + new Vector3(0, -2 * discardCount, 0);
+                break;
+            case 2:
+                hand[1].GetComponent<Transform>().position = discardAnchor.transform.position + new Vector3(-2 * discardCount, 0, 0);
+                break;
+            case 3:
+                hand[1].GetComponent<Transform>().position = discardAnchor.transform.position + new Vector3(0, -2 * discardCount, 0);
+                break;
+        }
+        if (tempCard.getValue() == 8)
         {
             this.killPlayer();
         }
@@ -143,6 +171,14 @@ public class Player : MonoBehaviour
     public void killPlayer()
     {
         alive = false;
+        if (hand[0] != null)
+        {
+            hand[0].discarded = true;
+        }
+        if(hand[1] != null)
+        {
+            hand[1].discarded = true;
+        }
         this.discardLeft();
         
     }
