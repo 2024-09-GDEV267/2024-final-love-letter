@@ -56,13 +56,35 @@ public class LoveLetter : MonoBehaviour
             effects(dCard.getValue());
 
         }
-        else 
+        else
         {
             Card dCard = activePlayer.discardRight();
             effects(dCard.getValue());
         }
-        activePlayer.deActive();
+        if(activePlayer.isAlive())
+        {
+            activePlayer.deActive();
+        }
+        changePlayer();
+        while (!activePlayer.isAlive())
+        {
+            changePlayer();
+        }
+        //check game end
+        if (loveLetterDeck.getDeckLength() == 0)
+        {
+            endRound();
+        }
+        else
+        {
+            activePlayer.draw(loveLetterDeck);
+            activePlayer.printHand();
+            activePlayer.Active();
+        }
+    }
 
+
+    public void changePlayer() { 
         //Changes the active player
         if (activePlayerIndex == 3)
         {
@@ -75,17 +97,6 @@ public class LoveLetter : MonoBehaviour
             //do math to move camera
         }
         activePlayer = players[activePlayerIndex];
-        //check game end
-        if (loveLetterDeck.getDeckLength() == 0)
-        {
-            endRound();
-        }
-        else
-        {
-            activePlayer.draw(loveLetterDeck);
-            activePlayer.printHand();
-            activePlayer.Active();
-        }
     }
    // void OnMouseDown()
    // {
@@ -189,16 +200,17 @@ public class LoveLetter : MonoBehaviour
             case 3:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
                 targetPlayer = players[chosenPlayer];
+                Debug.Log("Player " + chosenPlayer + " was targeted");
 
                 if (activePlayer.getHandValue() > targetPlayer.getHandValue())
                 {
                     targetPlayer.killPlayer();
-                    Debug.Log("Player 2 killed?");
+                    Debug.Log("Targeted player killed");
                 }
                 else if (activePlayer.getHandValue() < targetPlayer.getHandValue())
                 {
                     activePlayer.killPlayer();
-                    Debug.Log("Player 1 killed?");
+                    Debug.Log("Active player killed");
                 }
                 break;
 
