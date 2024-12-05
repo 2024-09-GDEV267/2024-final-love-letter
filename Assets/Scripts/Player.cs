@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("The card that was discarded was " + hand[0].getValue());
         Card tempCard = hand[0];
-        hand[0].GetComponent<Transform>().position = discardAnchor.transform.position;
+        //hand[0].GetComponent<Transform>().position = discardAnchor.transform.position;
         if (hand[1] != null)
         {
             hand[0] = hand[1];
@@ -120,8 +120,8 @@ public class Player : MonoBehaviour
 
     public void killPlayer()
     {
-        this.discardLeft();
         alive = false;
+        this.discardLeft();
         
     }
 
