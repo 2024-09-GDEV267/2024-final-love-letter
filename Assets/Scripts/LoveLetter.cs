@@ -157,7 +157,7 @@ public class LoveLetter : MonoBehaviour
         }
         players[leadingIndex].increaseScore();
         //Debug.Log("Player " + players[leadingIndex].getPlayerNum());
-        if (players[leadingIndex].getScore() > 4)
+        if (players[leadingIndex].getScore() < 4)
         {
             for (int i = 0; i < numPlayers; i++)
             {
@@ -185,6 +185,7 @@ public class LoveLetter : MonoBehaviour
                 chosenPlayer = Random.Range(0, numPlayers - 1);
                 int chosenCard = Random.Range(1, 8);
                 targetPlayer = players[chosenPlayer];
+                
 
                 if (targetPlayer.getHandValue() == chosenCard)
                 {
