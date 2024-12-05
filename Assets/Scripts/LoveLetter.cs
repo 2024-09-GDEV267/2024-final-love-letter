@@ -20,6 +20,7 @@ public class LoveLetter : MonoBehaviour
     public Vector3 mousePos;
     void Start()
     {
+        S = this;
         //Find the deck object as a peer component on this object, call method to instantiate it
         //loveLetterDeck = GetComponent<Deck>();
         loveLetterDeck.InstantiateDeck();

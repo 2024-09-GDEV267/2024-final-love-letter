@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4515968634797906153}
   - component: {fileID: 5936061999517007341}
+  - component: {fileID: -3313481259874639503}
+  - component: {fileID: -5866735199685298109}
   m_Layer: 0
   m_Name: 2Priest
   m_TagString: Untagged
@@ -84,3 +86,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3313481259874639503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699572209963198031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c6e6cec38ca5444b76e845df2f5d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 1
+  name: Guard
+  active: 0
+--- !u!65 &-5866735199685298109
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699572209963198031}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 3, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
