@@ -204,6 +204,7 @@ public class LoveLetter : MonoBehaviour
 
             case 4:
                 activePlayer.toggleProtection();
+                Debug.Log("Immunity activated!");
                 break;
 
             case 5:

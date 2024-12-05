@@ -12,6 +12,7 @@ public class Card : MonoBehaviour
     
     public void Start()
     {
+        //makeCard(1);
         //this.gameObject.name = name;
     }
 
@@ -83,7 +84,6 @@ public class Card : MonoBehaviour
         if (active)
         {
             Debug.Log("Clicked");
-            this.active = false;
             LoveLetter.S.playCard(this);
         }
         else
