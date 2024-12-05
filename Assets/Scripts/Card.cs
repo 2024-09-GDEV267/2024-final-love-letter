@@ -11,7 +11,7 @@ public class Card : MonoBehaviour
     
     public void Start()
     {
-        makeCard(1);
+        //makeCard(1);
         //this.gameObject.name = name;
     }
 
