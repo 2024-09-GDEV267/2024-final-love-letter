@@ -64,6 +64,10 @@ public class Player : MonoBehaviour
         Debug.Log("The card that was discarded was " + hand[1].getValue());
         Card tempCard = hand[1];
         hand[1].GetComponent<Transform>().position = discardAnchor.transform.position;
+        if(tempCard.getValue() == 8)
+        {
+            this.killPlayer();
+        }
         hand[1] = null;
         handSize--;
         return tempCard;
