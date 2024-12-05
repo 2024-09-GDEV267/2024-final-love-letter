@@ -8,6 +8,7 @@ public class Card : MonoBehaviour
     public int value ;
     public string name;
     public bool active ;
+    public GameObject cardBack;
     
     public void Start()
     {
@@ -46,6 +47,17 @@ public class Card : MonoBehaviour
                 return "Princess";
             default:
                 return null;
+        }
+    }
+    public void Update()
+    {
+        if (active)
+        {
+            cardBack.SetActive(false);
+        }
+        else
+        {
+            cardBack.SetActive(true);
         }
     }
 

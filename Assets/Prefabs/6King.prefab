@@ -101,6 +101,8 @@ MonoBehaviour:
   value: 1
   name: Guard
   active: 0
+  cardBack: {fileID: 5012538590486955255, guid: b34540742143e5a4eb51b0d3033456ae,
+    type: 3}
 --- !u!65 &8215861691974855487
 BoxCollider:
   m_ObjectHideFlags: 0
