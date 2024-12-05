@@ -8,8 +8,9 @@ public class Deck : MonoBehaviour
     [Header("Inscribed")]
     [SerializeField]
     public Card[] cards = new Card[16];
-    public GameObject[] cardPrefab = new GameObject[7];
+    public GameObject[] cardPrefab = new GameObject[8];
     public int deckLength = 16;
+    public GameObject deckAnchor;
     
     /// <summary>
     ///  this is the equivalent of the constructor for the Deck, but must be called explicitly
@@ -23,6 +24,7 @@ public class Deck : MonoBehaviour
             {
                 tgo = GameObject.Instantiate(cardPrefab[0]);
                 tgo.GetComponent<Card>().setValue(1);
+                tgo.GetComponent<Transform>().position = deckAnchor.transform.position;
                 cards[i] = tgo.GetComponent<Card>();
             }
             else if (i < 7)

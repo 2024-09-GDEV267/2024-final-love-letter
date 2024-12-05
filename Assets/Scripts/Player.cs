@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
-public class Player //MonoBehaviour
+public class Player : MonoBehaviour 
 {
     public int score = 0;
     public Card[] hand = new Card[2];
@@ -13,10 +14,11 @@ public class Player //MonoBehaviour
     private Vector3 rightShift = new Vector3(5, 0, 0);
     public bool immune = false;
     public GameObject discardAnchor;
+    public int num = 0;
 
-    public Player(int number)
+    public void Start ()
     {
-        playerNum = number;
+        playerNum = num;
     }
     //Drawing from the deck
     public void draw(Deck drawingFrom)

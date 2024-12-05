@@ -21,13 +21,13 @@ public class LoveLetter : MonoBehaviour
     void Start()
     {
         //Find the deck object as a peer component on this object, call method to instantiate it
-        loveLetterDeck = GetComponent<Deck>();
+        //loveLetterDeck = GetComponent<Deck>();
         loveLetterDeck.InstantiateDeck();
 
-        for (int i = 0; i < numPlayers; i++)
-        {
-            players[i] = new Player(i + 1);
-        }
+        //for (int i = 0; i < numPlayers; i++)
+        //{
+        //    players[i] = new Player(i + 1);
+        //}
         startRound();
     }
 
