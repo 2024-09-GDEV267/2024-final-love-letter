@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    public int value = 1;
-    public string name = "Guard";
-    public bool active = false;
+    public int value ;
+    public string name;
+    public bool active ;
     
     public void Start()
     {
-        makeCard(1);
         //this.gameObject.name = name;
     }
 
@@ -72,6 +71,7 @@ public class Card : MonoBehaviour
         if (active)
         {
             Debug.Log("Clicked");
+            this.active = false;
             LoveLetter.S.playCard(this);
         }
         else

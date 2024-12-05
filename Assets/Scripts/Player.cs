@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Player : MonoBehaviour 
 {
@@ -14,11 +15,23 @@ public class Player : MonoBehaviour
     private Vector3 rightShift = new Vector3(5, 0, 0);
     public bool immune = false;
     public GameObject discardAnchor;
-    public int num = 0;
 
     public void Start ()
     {
-        playerNum = num;
+        switch (playerNum)
+        {
+            case 0:
+                break;
+            case 1:
+                rightShift = new Vector3(0, -5, 0);
+                break;
+            case 2:
+                rightShift = new Vector3(5, 0, 0);
+                break;
+            case 3:
+                rightShift = new Vector3(0, -5, 0);
+                break;
+        }
     }
     //Drawing from the deck
     public void draw(Deck drawingFrom)
@@ -40,7 +53,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("The card that was discarded was " + hand[0].getValue());
         Card tempCard = hand[0];
-        //hand[0].GetComponent<Transform>().position = discardAnchor.transform.position;
+        hand[0].GetComponent<Transform>().position = discardAnchor.transform.position;
         if (hand[1] != null)
         {
             hand[0] = hand[1];
@@ -55,7 +68,6 @@ public class Player : MonoBehaviour
             this.killPlayer();
         }
         handSize--;
-        hand[0].GetComponent<Transform>().position = handAnchor.transform.position;
         return tempCard;
     }
     //Discarding the rightmost card in your hand

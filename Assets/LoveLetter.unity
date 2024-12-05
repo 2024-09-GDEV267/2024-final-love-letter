@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 57089379}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -257,7 +257,6 @@ MonoBehaviour:
   handAnchor: {fileID: 969918712}
   immune: 0
   discardAnchor: {fileID: 134615051}
-  num: 0
 --- !u!65 &140513267
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -371,7 +370,7 @@ Transform:
   m_GameObject: {fileID: 552743250}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -8, z: 1}
+  m_LocalPosition: {x: 0, y: -6, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -419,7 +418,6 @@ MonoBehaviour:
   handAnchor: {fileID: 57089379}
   immune: 0
   discardAnchor: {fileID: 552743250}
-  num: 0
 --- !u!65 &807802912
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -730,7 +728,6 @@ MonoBehaviour:
   handAnchor: {fileID: 1655031298}
   immune: 0
   discardAnchor: {fileID: 1700338634}
-  num: 0
 --- !u!65 &1407717001
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1124,7 +1121,7 @@ Transform:
   m_GameObject: {fileID: 2004852320}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.99, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1172,7 +1169,6 @@ MonoBehaviour:
   handAnchor: {fileID: 2004852320}
   immune: 0
   discardAnchor: {fileID: 990058161}
-  num: 0
 --- !u!65 &2136859445
 BoxCollider:
   m_ObjectHideFlags: 0
