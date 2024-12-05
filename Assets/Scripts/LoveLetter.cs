@@ -51,6 +51,7 @@ public class LoveLetter : MonoBehaviour
     {
         if (clickedCard == activePlayer.getLeftCard())
         {
+            Debug.Log("The left card was discarded");
             Card dCard = activePlayer.discardLeft();
             effects(dCard.getValue());
 
@@ -177,6 +178,7 @@ public class LoveLetter : MonoBehaviour
                 if (targetPlayer.getHandValue() == chosenCard)
                 {
                     targetPlayer.killPlayer();
+                    Debug.Log("Player was killed?");
                 }
                 break;
 
@@ -191,10 +193,12 @@ public class LoveLetter : MonoBehaviour
                 if (activePlayer.getHandValue() > targetPlayer.getHandValue())
                 {
                     targetPlayer.killPlayer();
+                    Debug.Log("Player 2 killed?");
                 }
                 else if (activePlayer.getHandValue() < targetPlayer.getHandValue())
                 {
                     activePlayer.killPlayer();
+                    Debug.Log("Player 1 killed?");
                 }
                 break;
 
