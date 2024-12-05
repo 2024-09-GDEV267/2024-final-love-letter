@@ -8,6 +8,7 @@ public class Card : MonoBehaviour
     public int value ;
     public string name;
     public bool active ;
+    public bool discarded = false;
     public GameObject cardBack;
     
     public void Start()
@@ -56,6 +57,10 @@ public class Card : MonoBehaviour
         {
             cardBack.SetActive(false);
         }
+        else if (active && discarded)
+        {
+            cardBack.SetActive(false);
+        }
         else
         {
             cardBack.SetActive(true);
@@ -84,6 +89,8 @@ public class Card : MonoBehaviour
         if (active)
         {
             Debug.Log("Clicked");
+            active = false;
+            discarded = true;
             LoveLetter.S.playCard(this);
         }
         else
