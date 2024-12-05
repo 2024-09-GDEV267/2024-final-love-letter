@@ -57,7 +57,7 @@ public class Card : MonoBehaviour
         {
             cardBack.SetActive(false);
         }
-        else if (active && discarded)
+        else if (discarded)
         {
             cardBack.SetActive(false);
         }

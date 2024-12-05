@@ -102,8 +102,8 @@ MonoBehaviour:
   value: 1
   name: Guard
   active: 0
-  cardBack: {fileID: 5012538590486955255, guid: b34540742143e5a4eb51b0d3033456ae,
-    type: 3}
+  discarded: 0
+  cardBack: {fileID: 5388789537172036656}
 --- !u!65 &6979970597199046121
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -206,6 +206,12 @@ PrefabInstance:
 --- !u!4 &639905439082512492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 556661130954021035, guid: b34540742143e5a4eb51b0d3033456ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1105861041819130055}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5388789537172036656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5012538590486955255, guid: b34540742143e5a4eb51b0d3033456ae,
     type: 3}
   m_PrefabInstance: {fileID: 1105861041819130055}
   m_PrefabAsset: {fileID: 0}

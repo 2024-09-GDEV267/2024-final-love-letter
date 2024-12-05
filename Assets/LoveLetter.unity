@@ -257,6 +257,7 @@ MonoBehaviour:
   handAnchor: {fileID: 969918712}
   immune: 0
   discardAnchor: {fileID: 134615051}
+  discardCount: 0
 --- !u!65 &140513267
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -418,6 +419,7 @@ MonoBehaviour:
   handAnchor: {fileID: 57089379}
   immune: 0
   discardAnchor: {fileID: 552743250}
+  discardCount: 0
 --- !u!65 &807802912
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -728,6 +730,7 @@ MonoBehaviour:
   handAnchor: {fileID: 1655031298}
   immune: 0
   discardAnchor: {fileID: 1700338634}
+  discardCount: 0
 --- !u!65 &1407717001
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1169,6 +1172,7 @@ MonoBehaviour:
   handAnchor: {fileID: 2004852320}
   immune: 0
   discardAnchor: {fileID: 990058161}
+  discardCount: 0
 --- !u!65 &2136859445
 BoxCollider:
   m_ObjectHideFlags: 0
