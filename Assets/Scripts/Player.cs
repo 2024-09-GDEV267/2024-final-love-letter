@@ -12,6 +12,7 @@ public class Player //MonoBehaviour
     public GameObject handAnchor;
     private Vector3 rightShift = new Vector3(5, 0, 0);
     public bool immune = false;
+    public GameObject discardAnchor;
 
     public Player(int number)
     {
@@ -37,6 +38,7 @@ public class Player //MonoBehaviour
     {
         Debug.Log("The card that was discarded was " + hand[0].getValue());
         Card tempCard = hand[0];
+        hand[0].GetComponent<Transform>().position = discardAnchor.transform.position;
         if (hand[1] != null)
         {
             hand[0] = hand[1];
@@ -53,13 +55,13 @@ public class Player //MonoBehaviour
         handSize--;
         hand[0].GetComponent<Transform>().position = handAnchor.transform.position;
         return tempCard;
-
     }
     //Discarding the rightmost card in your hand
     public Card discardRight()
     {
         Debug.Log("The card that was discarded was " + hand[1].getValue());
         Card tempCard = hand[1];
+        hand[1].GetComponent<Transform>().position = discardAnchor.transform.position;
         hand[1] = null;
         handSize--;
         return tempCard;

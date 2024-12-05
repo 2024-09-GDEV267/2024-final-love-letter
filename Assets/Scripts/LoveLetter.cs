@@ -14,6 +14,7 @@ public class LoveLetter : MonoBehaviour
     public Player[] players = new Player[4];
     public Player activePlayer;
     public Card[] discardPile = new Card[16]; // should be a list
+
     // create an ancorpoint for discardpile (vector3)
     public int activePlayerIndex;
     public Vector3 mousePos;
@@ -86,7 +87,7 @@ public class LoveLetter : MonoBehaviour
     }
    // void OnMouseDown()
    // {
-   //     //Chooses a card to discard (This didn't work - might need help)-
+   //     Chooses a card to discard (This didn't work - might need help)-
    //     if (mousePos.x < 0)
    //     {
    //         Card dCard = activePlayer.discardLeft();
@@ -101,8 +102,8 @@ public class LoveLetter : MonoBehaviour
    //         //move dcard to discardpile
    //         //activePlayer.discardRight();
    //     }
-
-   //     //Changes the active player
+   //
+   //     Changes the active player
    //     if(activePlayerIndex == 3)
    //     {
    //         activePlayerIndex = 0;
@@ -114,8 +115,8 @@ public class LoveLetter : MonoBehaviour
    //         //do math to move camera
    //     }
    //     activePlayer = players[activePlayerIndex];
-
-   //     //Ends the round if the deck is empty
+   // 
+   //     Ends the round if the deck is empty
    //     if (loveLetterDeck.getDeckLength() == 0)
    //     {
    //         endRound();
@@ -125,7 +126,7 @@ public class LoveLetter : MonoBehaviour
    //         activePlayer.draw(loveLetterDeck);
    //         activePlayer.printHand();
    //     }
-        
+   //     
    // }
 
     //Ends the round and increses the score of the winning player
