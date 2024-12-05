@@ -182,9 +182,13 @@ public class LoveLetter : MonoBehaviour
         switch (value)
         {
             case 1:
-                chosenPlayer = Random.Range(0, numPlayers - 1);
+                do
+                {
+                    chosenPlayer = Random.Range(0, numPlayers - 1);
+                    targetPlayer = players[chosenPlayer];
+                } while (targetPlayer == activePlayer);
+
                 int chosenCard = Random.Range(1, 8);
-                targetPlayer = players[chosenPlayer];
 
                 if (targetPlayer.getHandValue() == chosenCard)
                 {
@@ -192,7 +196,6 @@ public class LoveLetter : MonoBehaviour
                     Debug.Log("Player was killed?");
                 }
                 break;
-
             case 2:
                 //Let's come back to this one
                 break;
