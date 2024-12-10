@@ -212,9 +212,9 @@ public class LoveLetter : MonoBehaviour
                 }
                 int chosenCard = Random.Range(1, 8);
                 targetPlayer = players[chosenPlayer];
-                
 
-                if (targetPlayer.getHandValue() == chosenCard)
+
+                if (targetPlayer.getHandValue() == chosenCard && !targetPlayer.isProtected())
                 {
                     targetPlayer.killPlayer();
                     Debug.Log("Player was killed!" + targetPlayer);
@@ -224,35 +224,46 @@ public class LoveLetter : MonoBehaviour
             case 2:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
                 //currently randomized should be selected but selecting is hard at this point.
-                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer && !players[chosenPlayer].isProtected())
+                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer )
                 {
                     chosenPlayer = Random.Range(0, numPlayers - 1);
                 }
-                targetPlayer = players[chosenPlayer];
+                if (!targetPlayer.isProtected())
+                {
 
-                //targetPlayer.hand[0].active = true;
-                //turn back off after turn is passed due to snap turns this is not doable
-                //StartCoroutine(TurnDelay());
+                }
+                targetPlayer = players[chosenPlayer];
+                if (!targetPlayer.isProtected())
+                {
+                    //targetPlayer.hand[0].active = true;
+                    //turn back off after turn is passed due to snap turns this is not doable
+                    //StartCoroutine(TurnDelay())
+                }
                 break;
 
             case 3:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
-                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer && !players[chosenPlayer].isProtected())
+                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer )
                 {
                     chosenPlayer = Random.Range(0, numPlayers - 1);
                 }
                 targetPlayer = players[chosenPlayer];
                 //Debug.Log("Player " + chosenPlayer + " was targeted");
-
-                if (activePlayer.getHandValue() > targetPlayer.getHandValue())
+                //targetPlayer.hand[0].active = true;
+                //turn back off after turn is passed due to snap turns this is not doable
+                //StartCoroutine(TurnDelay());
+                if (!targetPlayer.isProtected())
                 {
-                    targetPlayer.killPlayer();
-                    Debug.Log("Targeted player killed");
-                }
-                else if (activePlayer.getHandValue() < targetPlayer.getHandValue())
-                {
-                    activePlayer.killPlayer();
-                    Debug.Log("Active player killed");
+                    if (activePlayer.getHandValue() > targetPlayer.getHandValue())
+                    {
+                        targetPlayer.killPlayer();
+                        Debug.Log("Targeted player killed");
+                    }
+                    else if (activePlayer.getHandValue() < targetPlayer.getHandValue())
+                    {
+                        activePlayer.killPlayer();
+                        Debug.Log("Active player killed");
+                    }
                 }
                 break;
 
@@ -263,30 +274,32 @@ public class LoveLetter : MonoBehaviour
 
             case 5:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
-                while(!players[chosenPlayer].isProtected())
-                {
-                    chosenPlayer = Random.Range(0, numPlayers - 1);
-                }
                 targetPlayer = players[chosenPlayer];
 
-                targetPlayer.discardLeft();
-                if (targetPlayer.isAlive())
+                if (!targetPlayer.isProtected())
                 {
-                    targetPlayer.draw(loveLetterDeck);
+                    targetPlayer.discardLeft();
+
+                    if (targetPlayer.isAlive())
+                    {
+                        targetPlayer.draw(loveLetterDeck);
+                    }
                 }
                 break;
 
             case 6:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
-                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer && !players[chosenPlayer].isProtected())
+                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer)
                 {
                     chosenPlayer = Random.Range(0, numPlayers - 1);
                 }
                 targetPlayer = players[chosenPlayer];
-
-                Card swappedCard = targetPlayer.getCard();
-                targetPlayer.setCard(activePlayer.getCard());
-                activePlayer.setCard(swappedCard);
+                if (!targetPlayer.isProtected())
+                {
+                    Card swappedCard = targetPlayer.getCard();
+                    targetPlayer.setCard(activePlayer.getCard());
+                    activePlayer.setCard(swappedCard);
+                }
                 break;
             case 7:
                 //handled elsewhere
