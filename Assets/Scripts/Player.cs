@@ -88,6 +88,7 @@ public class Player : MonoBehaviour
         }
         if(tempCard.getValue() == 8)
         {
+            LoveLetter.S.deadCount++;
             discardCount++;
             killPlayer();
         }
@@ -118,6 +119,7 @@ public class Player : MonoBehaviour
         hand[1] = null;
         if (tempCard.getValue() == 8)
         {
+            LoveLetter.S.deadCount++;
             discardCount++;
             killPlayer();
         }

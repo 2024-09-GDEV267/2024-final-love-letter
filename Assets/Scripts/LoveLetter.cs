@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.XR;
 
 public class LoveLetter : MonoBehaviour
 {
@@ -37,13 +39,13 @@ public class LoveLetter : MonoBehaviour
 
     public void startRound()
     {
-        
+        deadCount = 0;
         //Deals a card to each player
         for (int i = 0; i < numPlayers; i++)
         {
             players[i].draw(loveLetterDeck);
+            players[i].discardCount = 0;
         }
-
         //Determines an active player and draws them a card
         activePlayer = players[0];
         activePlayerIndex = 0;
@@ -55,26 +57,22 @@ public class LoveLetter : MonoBehaviour
     {
         if (activePlayer.hand[0].getValue() == 7 && (activePlayer.hand[1].getValue() == 5 || activePlayer.hand[1].getValue() == 6))
         {
-            Card dCard = activePlayer.discardLeft();
-            effects(dCard.getValue());
+            effects(activePlayer.discardLeft().getValue());
             Debug.Log("forced play");
         }
-        else if (activePlayer.hand[1].getValue() == 7 &&( activePlayer.hand[0].getValue() == 5 || activePlayer.hand[0].getValue() == 6))
+        else if (activePlayer.hand[1].getValue() == 7 && (activePlayer.hand[0].getValue() == 5 || activePlayer.hand[0].getValue() == 6))
         {
-            Card dCard = activePlayer.discardRight();
-            effects(dCard.getValue());
+            effects(activePlayer.discardRight().getValue());
             Debug.Log("forced play");
         }
         else if (clickedCard == activePlayer.getLeftCard())
         {
             // Debug.Log("The left card was discarded");
-            Card dCard = activePlayer.discardLeft();
-            effects(dCard.getValue());
+            effects(activePlayer.discardLeft().getValue());
         }
         else
         {
-            Card dCard = activePlayer.discardRight();
-            effects(dCard.getValue());
+            effects(activePlayer.discardRight().getValue());
         }
         if (activePlayer.isAlive())
         {
@@ -90,13 +88,13 @@ public class LoveLetter : MonoBehaviour
         }
 
         //check game end
-        if (loveLetterDeck.getDeckLength() == 0 || deadCount==3)
+        if (loveLetterDeck.getDeckLength() == 0 || deadCount == 3)
         {
             endRound();
         }
         else
         {
-            if(activePlayer.isProtected())
+            if (activePlayer.isProtected())
             {
                 activePlayer.toggleProtection();
             }
@@ -107,7 +105,7 @@ public class LoveLetter : MonoBehaviour
     }
 
 
-    public void changePlayer() { 
+    public void changePlayer() {
         //Changes the active player
         if (activePlayerIndex == 3)
         {
@@ -123,49 +121,49 @@ public class LoveLetter : MonoBehaviour
         activePlayer = players[activePlayerIndex];
 
     }
-   // void OnMouseDown()
-   // {
-   //     Chooses a card to discard (This didn't work - might need help)-
-   //     if (mousePos.x < 0)
-   //     {
-   //         Card dCard = activePlayer.discardLeft();
-   //         effects(dCard.getValue());
-   //         //move dcard to discardpile
-   //         //activePlayer.discardLeft(true);
-   //     }
-   //     else
-   //     {
-   //         Card dCard = activePlayer.discardRight();
-   //         effects(dCard.getValue());
-   //         //move dcard to discardpile
-   //         //activePlayer.discardRight();
-   //     }
-   //
-   //     Changes the active player
-   //     if(activePlayerIndex == 3)
-   //     {
-   //         activePlayerIndex = 0;
-   //         //do math to move camera
-   //     }
-   //     else
-   //     {
-   //         activePlayerIndex++;
-   //         //do math to move camera
-   //     }
-   //     activePlayer = players[activePlayerIndex];
-   // 
-   //     Ends the round if the deck is empty
-   //     if (loveLetterDeck.getDeckLength() == 0)
-   //     {
-   //         endRound();
-   //     }
-   //     else
-   //     {
-   //         activePlayer.draw(loveLetterDeck);
-   //         activePlayer.printHand();
-   //     }
-   //     
-   // }
+    // void OnMouseDown()
+    // {
+    //     Chooses a card to discard (This didn't work - might need help)-
+    //     if (mousePos.x < 0)
+    //     {
+    //         Card dCard = activePlayer.discardLeft();
+    //         effects(dCard.getValue());
+    //         //move dcard to discardpile
+    //         //activePlayer.discardLeft(true);
+    //     }
+    //     else
+    //     {
+    //         Card dCard = activePlayer.discardRight();
+    //         effects(dCard.getValue());
+    //         //move dcard to discardpile
+    //         //activePlayer.discardRight();
+    //     }
+    //
+    //     Changes the active player
+    //     if(activePlayerIndex == 3)
+    //     {
+    //         activePlayerIndex = 0;
+    //         //do math to move camera
+    //     }
+    //     else
+    //     {
+    //         activePlayerIndex++;
+    //         //do math to move camera
+    //     }
+    //     activePlayer = players[activePlayerIndex];
+    // 
+    //     Ends the round if the deck is empty
+    //     if (loveLetterDeck.getDeckLength() == 0)
+    //     {
+    //         endRound();
+    //     }
+    //     else
+    //     {
+    //         activePlayer.draw(loveLetterDeck);
+    //         activePlayer.printHand();
+    //     }
+    //     
+    // }
 
     //Ends the round and increses the score of the winning player
     void endRound()
@@ -212,19 +210,24 @@ public class LoveLetter : MonoBehaviour
                 }
             }
             loveLetterDeck.deleteDeck();
-            //loveLetterDeck.InstantiateDeck();
+            GameObject [] tgo = GameObject.FindGameObjectsWithTag("Card");
+            foreach(GameObject go in tgo)
+            {
+                GameObject.Destroy(go);
+            }
+            loveLetterDeck.deckLength = 16;
+            loveLetterDeck.InstantiateDeck();
 
-            //delete allcards
             startRound();
 
         }
-        
+
 
         else
         {
             //Debug.Log("Player " + players[leadingIndex].getPlayerNum() + " has won the game!");
         }
-        
+
     }
     void effects(int value)
     {
@@ -300,11 +303,17 @@ public class LoveLetter : MonoBehaviour
 
             case 5:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
+                while (!players[chosenPlayer].isAlive())
+                {
+                    chosenPlayer = Random.Range(0, numPlayers - 1);
+                }
                 targetPlayer = players[chosenPlayer];
 
                 if (!targetPlayer.isProtected())
                 {
+                    //error
                     targetPlayer.discardLeft();
+                    //error
                     if (targetPlayer.isAlive())
                     {
                         targetPlayer.draw(loveLetterDeck);
