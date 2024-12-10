@@ -15,8 +15,10 @@ public class LoveLetter : MonoBehaviour
     public Player activePlayer;
     public Card[] discardPile = new Card[16]; // should be a list
 
+
     // create an ancorpoint for discardpile (vector3)
     public int activePlayerIndex;
+    private int deadCount;
     public Vector3 mousePos;
     void Start()
     {
@@ -59,10 +61,9 @@ public class LoveLetter : MonoBehaviour
             Card dCard = activePlayer.discardRight();
             effects(dCard.getValue());
         }
-
         else if (clickedCard == activePlayer.getLeftCard())
         {
-           // Debug.Log("The left card was discarded");
+            // Debug.Log("The left card was discarded");
             Card dCard = activePlayer.discardLeft();
             effects(dCard.getValue());
         }
@@ -71,7 +72,7 @@ public class LoveLetter : MonoBehaviour
             Card dCard = activePlayer.discardRight();
             effects(dCard.getValue());
         }
-        if(activePlayer.isAlive())
+        if (activePlayer.isAlive())
         {
             activePlayer.deActive();
             Debug.Log("Protection OFF!");
@@ -84,9 +85,8 @@ public class LoveLetter : MonoBehaviour
             changePlayer();
         }
 
-
         //check game end
-        if (loveLetterDeck.getDeckLength() == 0)
+        if (loveLetterDeck.getDeckLength() == 0 || deadCount==3)
         {
             endRound();
         }
@@ -216,6 +216,7 @@ public class LoveLetter : MonoBehaviour
                 if (targetPlayer.getHandValue() == chosenCard && !targetPlayer.isProtected())
                 {
                     targetPlayer.killPlayer();
+                    deadCount++;
                     Debug.Log("Player was killed!" + targetPlayer);
                 }
                 break;
@@ -243,20 +244,20 @@ public class LoveLetter : MonoBehaviour
                     chosenPlayer = Random.Range(0, numPlayers - 1);
                 }
                 targetPlayer = players[chosenPlayer];
-                //Debug.Log("Player " + chosenPlayer + " was targeted");
-                //targetPlayer.hand[0].active = true;
-                //turn back off after turn is passed due to snap turns this is not doable
-                //StartCoroutine(TurnDelay());
+                Debug.Log("Player " + chosenPlayer + " was targeted");
+
                 if (!targetPlayer.isProtected())
                 {
                     if (activePlayer.getHandValue() > targetPlayer.getHandValue())
                     {
                         targetPlayer.killPlayer();
+                        deadCount++;
                         Debug.Log("Targeted player killed");
                     }
                     else if (activePlayer.getHandValue() < targetPlayer.getHandValue())
                     {
                         activePlayer.killPlayer();
+                        deadCount++;
                         Debug.Log("Active player killed");
                     }
                 }
@@ -274,10 +275,13 @@ public class LoveLetter : MonoBehaviour
                 if (!targetPlayer.isProtected())
                 {
                     targetPlayer.discardLeft();
-
                     if (targetPlayer.isAlive())
                     {
                         targetPlayer.draw(loveLetterDeck);
+                    }
+                    else
+                    {
+                        deadCount++;
                     }
                 }
                 break;
@@ -297,6 +301,7 @@ public class LoveLetter : MonoBehaviour
                 }
                 break;
             case 7:
+                deadCount++;
                 //handled elsewhere
                 break;
             case 8:

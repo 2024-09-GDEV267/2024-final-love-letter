@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("The card that was discarded was " + hand[0].getValue());
         Card tempCard = hand[0];
+        hand[0].discarded = true;
         switch(playerNum)
         {
             case 0:
