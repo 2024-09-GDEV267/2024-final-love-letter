@@ -18,7 +18,7 @@ public class LoveLetter : MonoBehaviour
 
     // create an ancorpoint for discardpile (vector3)
     public int activePlayerIndex;
-    private int deadCount;
+    public int deadCount;
     public Vector3 mousePos;
     void Start()
     {
@@ -55,11 +55,13 @@ public class LoveLetter : MonoBehaviour
         {
             Card dCard = activePlayer.discardLeft();
             effects(dCard.getValue());
+            Debug.Log("forced play");
         }
-        else if (activePlayer.hand[1].getValue() == 7 && (activePlayer.hand[0].getValue() == 5 || activePlayer.hand[0].getValue() == 6))
+        else if (activePlayer.hand[1].getValue() == 7 &&( activePlayer.hand[0].getValue() == 5 || activePlayer.hand[0].getValue() == 6))
         {
             Card dCard = activePlayer.discardRight();
             effects(dCard.getValue());
+            Debug.Log("forced play");
         }
         else if (clickedCard == activePlayer.getLeftCard())
         {
@@ -166,14 +168,30 @@ public class LoveLetter : MonoBehaviour
     //Ends the round and increses the score of the winning player
     void endRound()
     {
-        int currentMax = 0;
         int leadingIndex = 0;
-        for (int i = 0; i < numPlayers; i++)
+        if (deadCount != 3)
         {
-            if (players[i].getHandValue() > currentMax)
+            int currentMax = 0;
+            for (int i = 0; i < numPlayers; i++)
             {
-                currentMax = players[i].getHandValue();
-                leadingIndex = i;
+                if (players[i].isAlive())
+                {
+                    if (players[i].getHandValue() > currentMax)
+                    {
+                        currentMax = players[i].getHandValue();
+                        leadingIndex = i;
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < numPlayers; i++)
+            {
+                if (players[i].isAlive())
+                {
+                    leadingIndex = i;
+                }
             }
         }
         players[leadingIndex].increaseScore();
@@ -186,7 +204,10 @@ public class LoveLetter : MonoBehaviour
                 {
                     players[i].revivePlayer();
                 }
-                players[i].discardLeft();
+                else
+                {
+                    players[i].discardLeft();
+                }
             }
             startRound();
         }
@@ -205,13 +226,13 @@ public class LoveLetter : MonoBehaviour
             case 1:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
                 //currently randomized should be selected but selecting is hard at this point.
-                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer)
+                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != players[activePlayerIndex])
                 {
                     chosenPlayer = Random.Range(0, numPlayers - 1);
                 }
                 int chosenCard = Random.Range(1, 8);
                 targetPlayer = players[chosenPlayer];
-
+    
 
                 if (targetPlayer.getHandValue() == chosenCard && !targetPlayer.isProtected())
                 {

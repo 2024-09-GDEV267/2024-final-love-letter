@@ -88,7 +88,8 @@ public class Player : MonoBehaviour
         }
         if(tempCard.getValue() == 8)
         {
-            this.killPlayer();
+           
+            killPlayer();
         }
         discardCount++;
         handSize--;
@@ -114,9 +115,9 @@ public class Player : MonoBehaviour
                 hand[1].GetComponent<Transform>().position = discardAnchor.transform.position + new Vector3(0, -2 * discardCount, 0);
                 break;
         }
-        if (tempCard.getValue() == 8)
+        if (hand[1].getValue() == 8)
         {
-            this.killPlayer();
+            killPlayer();
         }
         hand[1] = null;
         discardCount++;
@@ -142,6 +143,7 @@ public class Player : MonoBehaviour
     //Increases this player's score
     public void increaseScore()
     {
+        Debug.Log("scoreup");
         score++;
     }
 
@@ -180,7 +182,10 @@ public class Player : MonoBehaviour
         {
             hand[1].discarded = true;
         }
-        this.discardLeft();
+        if (hand[0] != null)
+        {
+            this.discardLeft();
+        }
         
     }
 
