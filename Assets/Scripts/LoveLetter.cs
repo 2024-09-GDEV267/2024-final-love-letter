@@ -74,13 +74,8 @@ public class LoveLetter : MonoBehaviour
         if(activePlayer.isAlive())
         {
             activePlayer.deActive();
-            if (activePlayer.isProtected())
-            {
-                activePlayer.toggleProtection();
-                Debug.Log("Protection OFF!");
-            }
+            Debug.Log("Protection OFF!");
         }
-        
         changePlayer();
 
 
@@ -97,6 +92,10 @@ public class LoveLetter : MonoBehaviour
         }
         else
         {
+            if(activePlayer.isProtected())
+            {
+                activePlayer.toggleProtection();
+            }
             activePlayer.draw(loveLetterDeck);
             activePlayer.printHand();
             activePlayer.Active();
@@ -227,10 +226,6 @@ public class LoveLetter : MonoBehaviour
                 while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer )
                 {
                     chosenPlayer = Random.Range(0, numPlayers - 1);
-                }
-                if (!targetPlayer.isProtected())
-                {
-
                 }
                 targetPlayer = players[chosenPlayer];
                 if (!targetPlayer.isProtected())
