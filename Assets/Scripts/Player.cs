@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
         }
         if(tempCard.getValue() == 8)
         {
-           
+            discardCount++;
             killPlayer();
         }
         discardCount++;
@@ -115,11 +115,12 @@ public class Player : MonoBehaviour
                 hand[1].GetComponent<Transform>().position = discardAnchor.transform.position + new Vector3(0, -2 * discardCount, 0);
                 break;
         }
-        if (hand[1].getValue() == 8)
+        hand[1] = null;
+        if (tempCard.getValue() == 8)
         {
+            discardCount++;
             killPlayer();
         }
-        hand[1] = null;
         discardCount++;
         handSize--;
         return tempCard;

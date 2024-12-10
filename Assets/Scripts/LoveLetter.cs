@@ -211,6 +211,7 @@ public class LoveLetter : MonoBehaviour
             }
             startRound();
         }
+        
         else
         {
             //Debug.Log("Player " + players[leadingIndex].getPlayerNum() + " has won the game!");
@@ -245,7 +246,7 @@ public class LoveLetter : MonoBehaviour
             case 2:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
                 //currently randomized should be selected but selecting is hard at this point.
-                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer )
+                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != players[activePlayerIndex])
                 {
                     chosenPlayer = Random.Range(0, numPlayers - 1);
                 }
@@ -260,7 +261,7 @@ public class LoveLetter : MonoBehaviour
 
             case 3:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
-                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer )
+                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != players[activePlayerIndex])
                 {
                     chosenPlayer = Random.Range(0, numPlayers - 1);
                 }
@@ -309,7 +310,7 @@ public class LoveLetter : MonoBehaviour
 
             case 6:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
-                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer)
+                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != players[activePlayerIndex])
                 {
                     chosenPlayer = Random.Range(0, numPlayers - 1);
                 }
