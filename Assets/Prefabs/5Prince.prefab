@@ -102,6 +102,7 @@ MonoBehaviour:
   value: 1
   name: Guard
   active: 0
+  discarded: 0
   cardBack: {fileID: 3497137841208991395}
 --- !u!65 &-3939621594796204789
 BoxCollider:

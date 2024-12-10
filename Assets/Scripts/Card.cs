@@ -88,14 +88,14 @@ public class Card : MonoBehaviour
         
         if (active)
         {
-            Debug.Log("Clicked");
+            //Debug.Log("Clicked");
             active = false;
             discarded = true;
             LoveLetter.S.playCard(this);
         }
         else
         {
-            Debug.Log("not active");
+            //Debug.Log("not active");
         }
     }
 }

@@ -49,12 +49,22 @@ public class LoveLetter : MonoBehaviour
     }
     public void playCard(Card clickedCard)
     {
-        if (clickedCard == activePlayer.getLeftCard())
+        if (activePlayer.hand[0].getValue() == 7 && (activePlayer.hand[1].getValue() == 5 || activePlayer.hand[1].getValue() == 6))
         {
-            Debug.Log("The left card was discarded");
             Card dCard = activePlayer.discardLeft();
             effects(dCard.getValue());
+        }
+        else if (activePlayer.hand[1].getValue() == 7 && (activePlayer.hand[0].getValue() == 5 || activePlayer.hand[0].getValue() == 6))
+        {
+            Card dCard = activePlayer.discardRight();
+            effects(dCard.getValue());
+        }
 
+        else if (clickedCard == activePlayer.getLeftCard())
+        {
+           // Debug.Log("The left card was discarded");
+            Card dCard = activePlayer.discardLeft();
+            effects(dCard.getValue());
         }
         else
         {
@@ -64,12 +74,22 @@ public class LoveLetter : MonoBehaviour
         if(activePlayer.isAlive())
         {
             activePlayer.deActive();
+            if (activePlayer.isProtected())
+            {
+                activePlayer.toggleProtection();
+                Debug.Log("Protection OFF!");
+            }
         }
+        
         changePlayer();
+
+
         while (!activePlayer.isAlive())
         {
             changePlayer();
         }
+
+
         //check game end
         if (loveLetterDeck.getDeckLength() == 0)
         {
@@ -96,7 +116,9 @@ public class LoveLetter : MonoBehaviour
             activePlayerIndex++;
             //do math to move camera
         }
+        //Debug.Log("the active player is now " + activePlayerIndex);
         activePlayer = players[activePlayerIndex];
+
     }
    // void OnMouseDown()
    // {
@@ -171,7 +193,7 @@ public class LoveLetter : MonoBehaviour
         }
         else
         {
-            Debug.Log("Player " + players[leadingIndex].getPlayerNum() + " has won the game!");
+            //Debug.Log("Player " + players[leadingIndex].getPlayerNum() + " has won the game!");
         }
         
     }
@@ -183,6 +205,11 @@ public class LoveLetter : MonoBehaviour
         {
             case 1:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
+                //currently randomized should be selected but selecting is hard at this point.
+                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer)
+                {
+                    chosenPlayer = Random.Range(0, numPlayers - 1);
+                }
                 int chosenCard = Random.Range(1, 8);
                 targetPlayer = players[chosenPlayer];
                 
@@ -190,18 +217,32 @@ public class LoveLetter : MonoBehaviour
                 if (targetPlayer.getHandValue() == chosenCard)
                 {
                     targetPlayer.killPlayer();
-                    Debug.Log("Player was killed?");
+                    Debug.Log("Player was killed!" + targetPlayer);
                 }
                 break;
 
             case 2:
-                //Let's come back to this one
+                chosenPlayer = Random.Range(0, numPlayers - 1);
+                //currently randomized should be selected but selecting is hard at this point.
+                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer && !players[chosenPlayer].isProtected())
+                {
+                    chosenPlayer = Random.Range(0, numPlayers - 1);
+                }
+                targetPlayer = players[chosenPlayer];
+
+                //targetPlayer.hand[0].active = true;
+                //turn back off after turn is passed due to snap turns this is not doable
+                //StartCoroutine(TurnDelay());
                 break;
 
             case 3:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
+                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer && !players[chosenPlayer].isProtected())
+                {
+                    chosenPlayer = Random.Range(0, numPlayers - 1);
+                }
                 targetPlayer = players[chosenPlayer];
-                Debug.Log("Player " + chosenPlayer + " was targeted");
+                //Debug.Log("Player " + chosenPlayer + " was targeted");
 
                 if (activePlayer.getHandValue() > targetPlayer.getHandValue())
                 {
@@ -222,6 +263,10 @@ public class LoveLetter : MonoBehaviour
 
             case 5:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
+                while(!players[chosenPlayer].isProtected())
+                {
+                    chosenPlayer = Random.Range(0, numPlayers - 1);
+                }
                 targetPlayer = players[chosenPlayer];
 
                 targetPlayer.discardLeft();
@@ -233,13 +278,27 @@ public class LoveLetter : MonoBehaviour
 
             case 6:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
+                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != activePlayer && !players[chosenPlayer].isProtected())
+                {
+                    chosenPlayer = Random.Range(0, numPlayers - 1);
+                }
                 targetPlayer = players[chosenPlayer];
 
                 Card swappedCard = targetPlayer.getCard();
                 targetPlayer.setCard(activePlayer.getCard());
                 activePlayer.setCard(swappedCard);
                 break;
+            case 7:
+                //handled elsewhere
+                break;
+            case 8:
+                //handled elsewhere
+                break;
         }
+    }
+    IEnumerator TurnDelay()
+    {
+        yield return new WaitForSeconds(5);
     }
 
 }

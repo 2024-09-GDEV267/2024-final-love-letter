@@ -147,7 +147,7 @@ public class Player : MonoBehaviour
     //Prints that hand (for testing purposes)
     public void printHand()
     {
-        Debug.Log("This is Player " + playerNum + "'s hand:");
+        //Debug.Log("This is Player " + playerNum + "'s hand:");
         foreach (Card card in hand)
         {
             Debug.Log(card.getValue());
