@@ -16,6 +16,7 @@ public class LoveLetter : MonoBehaviour
     public Card[] discardPile = new Card[16]; // should be a list
 
 
+
     // create an ancorpoint for discardpile (vector3)
     public int activePlayerIndex;
     public int deadCount;
@@ -36,6 +37,7 @@ public class LoveLetter : MonoBehaviour
 
     public void startRound()
     {
+        
         //Deals a card to each player
         for (int i = 0; i < numPlayers; i++)
         {
@@ -209,9 +211,15 @@ public class LoveLetter : MonoBehaviour
                     players[i].discardLeft();
                 }
             }
+            loveLetterDeck.deleteDeck();
+            //loveLetterDeck.InstantiateDeck();
+
+            //delete allcards
             startRound();
+
         }
         
+
         else
         {
             //Debug.Log("Player " + players[leadingIndex].getPlayerNum() + " has won the game!");

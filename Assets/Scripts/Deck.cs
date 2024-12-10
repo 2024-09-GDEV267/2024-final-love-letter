@@ -99,7 +99,13 @@ public class Deck : MonoBehaviour
     {
         return deckLength;
     }
-
+    public void deleteDeck()
+    {
+        foreach (Card C in cards)
+        {
+            GameObject.Destroy(C.gameObject);
+        }
+    }
     //Prints the deck for testing purposes
     public void printDeck()
     {
