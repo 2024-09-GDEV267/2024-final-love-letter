@@ -217,6 +217,9 @@ public class Player : MonoBehaviour
     public void setCard(Card passedCard)
     {
         hand[0] = passedCard;
+        hand[0].transform.position = handAnchor.transform.position;
+        hand[0].transform.rotation = playerRotation;
+
     }
 
     public bool isProtected()
@@ -228,4 +231,6 @@ public class Player : MonoBehaviour
     {
         return alive;
     }
+
+
 }

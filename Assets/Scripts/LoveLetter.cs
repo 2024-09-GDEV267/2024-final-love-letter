@@ -77,7 +77,6 @@ public class LoveLetter : MonoBehaviour
         if (activePlayer.isAlive())
         {
             activePlayer.deActive();
-            Debug.Log("Protection OFF!");
         }
         changePlayer();
 
@@ -238,13 +237,16 @@ public class LoveLetter : MonoBehaviour
             case 1:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
                 //currently randomized should be selected but selecting is hard at this point.
-                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != players[activePlayerIndex])
+                while (!players[chosenPlayer].isAlive() || chosenPlayer == activePlayerIndex)
                 {
+                    
+                    Debug.Log("reroll " +chosenPlayer);
                     chosenPlayer = Random.Range(0, numPlayers - 1);
                 }
                 int chosenCard = Random.Range(1, 8);
                 targetPlayer = players[chosenPlayer];
-    
+
+                Debug.Log("Player " + chosenPlayer + " was targeted");
 
                 if (targetPlayer.getHandValue() == chosenCard && !targetPlayer.isProtected())
                 {
@@ -257,8 +259,9 @@ public class LoveLetter : MonoBehaviour
             case 2:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
                 //currently randomized should be selected but selecting is hard at this point.
-                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != players[activePlayerIndex])
+                while (!players[chosenPlayer].isAlive() || chosenPlayer == activePlayerIndex)
                 {
+                    Debug.Log("reroll " + chosenPlayer);
                     chosenPlayer = Random.Range(0, numPlayers - 1);
                 }
                 targetPlayer = players[chosenPlayer];
@@ -272,15 +275,16 @@ public class LoveLetter : MonoBehaviour
 
             case 3:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
-                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != players[activePlayerIndex])
+                while (!players[chosenPlayer].isAlive() || chosenPlayer == activePlayerIndex)
                 {
+                    Debug.Log("reroll " + chosenPlayer);
                     chosenPlayer = Random.Range(0, numPlayers - 1);
                 }
                 targetPlayer = players[chosenPlayer];
                 Debug.Log("Player " + chosenPlayer + " was targeted");
-
                 if (!targetPlayer.isProtected())
                 {
+                    Debug.Log(activePlayer.getHandValue() + " " + targetPlayer.getHandValue());
                     if (activePlayer.getHandValue() > targetPlayer.getHandValue())
                     {
                         targetPlayer.killPlayer();
@@ -327,15 +331,19 @@ public class LoveLetter : MonoBehaviour
 
             case 6:
                 chosenPlayer = Random.Range(0, numPlayers - 1);
-                while (!players[chosenPlayer].isAlive() && players[chosenPlayer] != players[activePlayerIndex])
+                while (!players[chosenPlayer].isAlive() || chosenPlayer == activePlayerIndex)
                 {
+
+                    Debug.Log("reroll " + chosenPlayer);
                     chosenPlayer = Random.Range(0, numPlayers - 1);
                 }
                 targetPlayer = players[chosenPlayer];
+                Debug.Log("Player " + chosenPlayer + " was targeted");
                 if (!targetPlayer.isProtected())
                 {
-                    Card swappedCard = targetPlayer.getCard();
-                    targetPlayer.setCard(activePlayer.getCard());
+                    Card swappedCard = players[chosenPlayer].getCard();
+                    players[chosenPlayer].setCard(activePlayer.getCard());
+                    players[chosenPlayer].deActive();
                     activePlayer.setCard(swappedCard);
                 }
                 break;
